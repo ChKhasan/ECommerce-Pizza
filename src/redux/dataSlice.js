@@ -1,0 +1,54 @@
+import { createSlice } from "@reduxjs/toolkit";
+import { product } from "../data/Products";
+
+const dataSlice = createSlice({
+  name: "dataBase",
+  initialState: {
+    data: [...product],
+    selected: [],
+    countSum: 0,
+    isContainerActive: false
+  },
+  reducers: {
+    dataBase: (state, action) => {
+      state.selected.push(action.payload);
+      state.countSum += Math.floor(action.payload.price * 0.0072)
+      state.isContainerActive = true
+      console.log(action);
+    },
+    addProduct: (state, action) => {
+      state.selected[
+        state.selected.findIndex((item) => item.id == action.payload)
+      ].quality += 1;
+    },
+    unAddProduct: (state, action) => {
+      if (
+        state.selected[
+          state.selected.findIndex((item) => item.id == action.payload)
+        ].quality > 1
+      ) {
+        state.selected[
+          state.selected.findIndex((item) => item.id == action.payload)
+        ].quality -= 1;
+      }
+    },
+    animate: (state) => {
+      state.isContainerActive = false
+    },
+    createData: (state,action) => {
+      state.data.push({...action.payload.values, id: state.data.length + 1,category: action.payload.category, img: action.payload.urr})
+      console.log(action.payload);
+    }
+    ,
+    deleteData: (state,action) => {
+   action.payload.forEach(element => {
+    state.data = state.data.filter(item => item.id !== element.id)
+    })
+      console.log(state.data); 
+    }
+  },
+});
+
+
+export default dataSlice.reducer;
+export const { dataBase, addProduct,animate,unAddProduct,createData,deleteData } = dataSlice.actions;
