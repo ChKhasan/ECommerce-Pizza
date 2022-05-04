@@ -24,7 +24,7 @@ const APanelLayout = ({ children }) => {
 
   return (
     <>
-    <div style={{position: "absolute~",height: "64px",width: "100%",background: "white",zIndex: "0"}}></div>
+    <div style={{position: "absolute",height: "64px",width: "100%",background: "white",zIndex: "0"}}></div>
       <Layout>
         <Sider
           trigger={null}
