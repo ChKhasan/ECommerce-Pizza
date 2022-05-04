@@ -180,6 +180,8 @@ p {
   background: #ff7010 !important;
   border: none !important;
   padding: 13px 32px !important;
+  border-radius: 0.25rem !important;
+  height: initial !important;
 }
 .btn2 a {
   color: white !important;
@@ -661,4 +663,10 @@ input[type="checkbox"]::before {
 
 .site-layout .site-layout-background {
   background: #fff;
+}
+.ant-layout-content {
+  margin: 65px 24px !important;
+}
+.ant-layout-header {
+  z-index: 1 !important;
 }

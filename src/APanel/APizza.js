@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   Modal,
@@ -15,6 +15,7 @@ import { product } from "../data/Products";
 // import ImgCrop from 'antd-img-crop';
 import { useDispatch, useSelector } from "react-redux";
 import { createData, deleteData } from "../redux/dataSlice";
+import { FiEdit } from "react-icons/fi";
 
 const { Option } = Select;
 
@@ -26,40 +27,44 @@ const tailLayout = {
   wrapperCol: { offset: 4, span: 20 },
 };
 
-const columns = [
-  {
-    title: "TiTle",
-    dataIndex: "title",
-  },
-  {
-    title: "Text",
-    dataIndex: "text",
-  },
-  {
-    title: "Category",
-    dataIndex: "category",
-  },
-  {
-    title: "Price",
-    dataIndex: "price",
-  },
-  {
-    title: "Status",
-    dataIndex: "status",
-  },
-  {
-    title: "Image",
-    dataIndex: "img",
-  },
-];
-
-
-
 const APizza = ({ category }) => {
+  const columns = [
+    {
+      title: "TiTle",
+      dataIndex: "title",
+    },
+    {
+      title: "Text",
+      dataIndex: "text",
+    },
+    {
+      title: "Category",
+      dataIndex: "category",
+    },
+    {
+      title: "Price",
+      dataIndex: "price",
+    },
+    {
+      title: "Status",
+      dataIndex: "status",
+    },
+    {
+      title: "Action",
+      dataIndex: "",
+      key: "x",
+      render: (e) => (
+        <a onClick={() => editDatas(e)} style={{ color: "yellow" }}>
+          <FiEdit size={30} />
+        </a>
+      ),
+    },
+  ];
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [fileList, setFileList] = useState([]);
   const [imageUrl, setImageUrl] = useState("");
-  const [selected,setSelected] = useState([])
+  const [selected, setSelected] = useState([]);
+  const [editButton, setEditButton] = useState({});
   const dispatch = useDispatch();
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
@@ -68,14 +73,21 @@ const APizza = ({ category }) => {
         "selectedRows: ",
         selectedRows
       );
-      setSelected([...selectedRows])
+      setSelected([...selectedRows]);
     },
   };
+  useEffect(() => {
+    if (selected.length === 1) {
+      setEditButton(true);
+    } else {
+      setEditButton(false);
+    }
+  }, [selected]);
   const onChange = ({ fileList: newFileList }) => {
     setFileList(newFileList);
     setImageUrl(newFileList[0].thumbUrl);
   };
- const store = useSelector(state => state.dataSlice)
+  const store = useSelector((state) => state.dataSlice);
   const onPreview = async (file) => {
     console.log("img", src);
     let src = file.url;
@@ -109,28 +121,45 @@ const APizza = ({ category }) => {
   const onFinish = (values) => {
     console.log(values);
     let urr = fileList[0].thumbUrl;
-    dispatch(createData({ values, category, urr }));
+    dispatch(createData({ values, category, urr, editButton }));
+    setIsModalVisible(false);
+    form.resetFields();
   };
 
   const onReset = () => {
     form.resetFields();
   };
-const deleteDatas = () => {
-  dispatch(deleteData(selected))
-  console.log(store,selected);
-}
+  const deleteDatas = () => {
+    dispatch(deleteData(selected));
+    console.log(store, selected);
+  };
+  const editDatas = (e) => {
+    setIsModalVisible(true);
+    setEditButton(e);
+    form.setFieldsValue(e);
+    setFileList([{
+      uid: '-1',
+      name: 'image.png',
+      status: 'done',
+      url: `../${e.img}`,
+    },])
+    console.log(e.img);
+  };
   return (
     <div>
-      <Button primary danger onClick={() => deleteDatas()}>Delete</Button>
-      <Button type="primary" onClick={showModal}>
-        Create Product
-      </Button>
-      <Modal
-        title="Basic Modal"
-        visible={isModalVisible}
-        onOk={handleOk}
-        onCancel={handleCancel}
-      >
+      <div className="row">
+        <div className="col-6">
+          <Button type="primary" danger onClick={() => deleteDatas()}>
+            Delete
+          </Button>
+        </div>
+        <div className="col-6 d-flex justify-content-end">
+          <Button className="btn2" type="primary" onClick={showModal}>
+            Create Product
+          </Button>
+        </div>
+      </div>
+      <Modal title="Basic Modal" visible={isModalVisible} footer={<></>}>
         <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}>
           <Form.Item name="title" label="Title" rules={[{ required: true }]}>
             <Input />
@@ -155,12 +184,18 @@ const deleteDatas = () => {
             {fileList.length < 5 && "+ Upload"}
           </Upload>
           <Form.Item {...tailLayout}>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
-            <Button htmlType="button" onClick={onReset}>
-              Reset
-            </Button>
+            <div className="row">
+              <div className="col-12 d-flex justify-content-end">
+              <Button onClick={handleCancel}>Cancel</Button>
+
+                <Button htmlType="button" className="mx-4" onClick={onReset}>
+                  Reset
+                </Button>
+                <Button type="primary" htmlType="submit">
+                  Submit
+                </Button>
+              </div>
+            </div>
           </Form.Item>
         </Form>
       </Modal>

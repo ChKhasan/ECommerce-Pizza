@@ -15,6 +15,7 @@ const APanelLayout = ({ children }) => {
   const navigate = useNavigate();
   const toggle = () => {
     setCollapsed(!collapsed);
+    console.log("ll");
   };
   const logOut = () => {
     localStorage.removeItem(TOKEN);
@@ -22,26 +23,47 @@ const APanelLayout = ({ children }) => {
   };
 
   return (
-    <div className="container-xxl">
+    <>
+    <div style={{position: "absolute~",height: "64px",width: "100%",background: "white",zIndex: "0"}}></div>
       <Layout>
-        <Sider trigger={null} collapsible collapsed={collapsed}>
-          <div className="logo">
-            <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
-              <Menu.Item
-                key="0"
-                icon={
-                  <DingtalkOutlined
-                    twoToneColor="#fff"
-                    style={{
-                      marginLeft: "-10px",
-                      fontSize: "40px",
-                      color: "#fff",
-                    }}
-                  />
-                }
-              >
-                <Link to="/">CRUD</Link>
-              </Menu.Item>
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={collapsed}
+          style={{
+            overflow: "auto",
+            height: "100vh",
+            position: "fixed",
+            left: 0,
+            top: 0,
+            bottom: 0,
+            zIndex: 10,
+            theme: "light",
+          }}
+        >
+          <div className="logo" style={{ background: "transparent" }}>
+            <Menu
+              theme="dark"
+              mode="inline"
+              style={{ background: "white", height: "130px" }}
+              defaultSelectedKeys={["1"]}
+              className="d-flex justify-content-center align-items-center flex-column"
+            >
+              <Link to="/">
+                <img
+                  src="../../Group 2.png"
+                  alt=" "
+                  style={{ width: "50px", height: "50px" }}
+                />
+                <br />
+              </Link>
+              {!collapsed && (
+                <img
+                  className="mt-3"
+                  src="../../Images/Куда пицца.png"
+                  alt=" "
+                />
+              )}
             </Menu>
           </div>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
@@ -67,21 +89,17 @@ const APanelLayout = ({ children }) => {
             <Menu.Item key="7" icon={<UserOutlined />}>
               <Link to="/admin/sauces">Sauces</Link>
             </Menu.Item>
-            <Menu.Item key="8">
-              <Button onClick={logOut}>LogOut</Button>
-            </Menu.Item>
-            <Menu.Item key="9">
-              <Button
-                onClick={() => {
-                  navigate("/homepage");
-                }}
-              >
-                Home Page
-              </Button>
+            <Menu.Item key="8" icon={<UserOutlined />}>
+              <Button onClick={logOut}>Log out</Button>
             </Menu.Item>
           </Menu>
         </Sider>
-        <Layout className="site-layout">
+        <Layout
+          className="site-layout"
+          style={{
+            marginLeft: 200,
+          }}
+        >
           <Header className="site-layout-background" style={{ padding: 0 }}>
             {React.createElement(
               collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
@@ -91,6 +109,7 @@ const APanelLayout = ({ children }) => {
               }
             )}
           </Header>
+
           <Content
             className="site-layout-background"
             style={{
@@ -103,7 +122,8 @@ const APanelLayout = ({ children }) => {
           </Content>
         </Layout>
       </Layout>
-    </div>
+    </>
+    // </div>
   );
 };
 
