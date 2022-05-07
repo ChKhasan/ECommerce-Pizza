@@ -5,7 +5,6 @@ import {
   MenuFoldOutlined,
   UserOutlined,
   VideoCameraOutlined,
-  DingtalkOutlined,
 } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 import { TOKEN } from "../const/Token";
@@ -24,7 +23,15 @@ const APanelLayout = ({ children }) => {
 
   return (
     <>
-    <div style={{position: "absolute",height: "64px",width: "100%",background: "white",zIndex: "0"}}></div>
+      <div
+        style={{
+          position: "absolute",
+          height: "64px",
+          width: "100%",
+          background: "white",
+          zIndex: "0",
+        }}
+      ></div>
       <Layout>
         <Sider
           trigger={null}
@@ -123,7 +130,6 @@ const APanelLayout = ({ children }) => {
         </Layout>
       </Layout>
     </>
-    // </div>
   );
 };
 

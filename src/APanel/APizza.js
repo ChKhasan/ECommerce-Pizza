@@ -11,8 +11,7 @@ import {
   InputNumber,
   Upload,
 } from "antd";
-import { product } from "../data/Products";
-// import ImgCrop from 'antd-img-crop';
+
 import { useDispatch, useSelector } from "react-redux";
 import { createData, deleteData } from "../redux/dataSlice";
 import { FiEdit } from "react-icons/fi";
@@ -108,9 +107,7 @@ const APizza = ({ category }) => {
     setIsModalVisible(true);
   };
 
-  const handleOk = () => {
-    setIsModalVisible(false);
-  };
+
 
   const handleCancel = () => {
     setIsModalVisible(false);

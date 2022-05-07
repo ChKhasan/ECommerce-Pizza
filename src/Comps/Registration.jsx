@@ -1,6 +1,5 @@
 import React from "react";
-import { Form, Input, InputNumber, Button } from "antd";
-import { Link } from "react-router-dom";
+import { Form, Input, Button } from "antd";
 import { TOKEN } from "../const/Token";
 const layout = {
   labelCol: {
@@ -24,7 +23,6 @@ const validateMessages = {
 const Registration = () => {
   const onFinish = (values) => {
   localStorage.setItem(TOKEN,JSON.stringify(values))
-  console.log(values);
   };
   return (
     <div className="container-xxl ">
@@ -91,7 +89,6 @@ const Registration = () => {
               <Button type="primary" htmlType="submit">
                 Submit
               </Button>
-              {/* <Link to="/regis">werer</Link> */}
             </Form.Item>
           </Form>
         </div>

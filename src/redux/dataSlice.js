@@ -35,6 +35,7 @@ const dataSlice = createSlice({
     animate: (state) => {
       state.isContainerActive = false
     },
+    
     createData: (state,action) => {
       if(!action.payload.editButton) {
 

@@ -1,14 +1,13 @@
 import React from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
-import { Link, Router, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { TOKEN } from "../const/Token";
 
 const Login = () => {
   const navigate = useNavigate()
 
   const onFinish = (values) => {
-    console.log("Received values of form: ", values);
     localStorage.setItem(TOKEN,JSON.stringify(values))
     navigate("/admin/pizza")
   };

@@ -1,5 +1,4 @@
 import React from "react";
-import FormInput from "../Comps/FormInput";
 import { Link } from "react-router-dom";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -7,13 +6,14 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import { useDispatch, useSelector } from "react-redux";
 import { dataBase } from "../redux/dataSlice";
-import { CarouselPro, PromocodeSend, RegistrationCart } from "../Comps";
+import { CarouselPro, FormInput, PromocodeSend, RegistrationCart } from "../Comps";
 
 const HomeCart = (props) => {
-
+  const { nameCategory } = props;
   const [selectedValue, setSelectedValue] = React.useState("a");
   const [selectedValue1, setSelectedValue1] = React.useState("b");
   const [selectedValue2, setSelectedValue2] = React.useState("c");
+
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
   };
@@ -45,12 +45,11 @@ const HomeCart = (props) => {
     inputProps: { "aria-label": item },
   });
   const dispatch = useDispatch();
-  const addArr = (itemm) => {
+  const addElementToData = (itemm) => {
     document.getElementById(itemm.id).disabled = "true";
     document.getElementById("dis").disabled = false;
     dispatch(dataBase(itemm));
   };
-
   const selected = useSelector((state) => state.dataSlice.selected);
   return (
     <>
@@ -76,19 +75,15 @@ const HomeCart = (props) => {
 
       <PromocodeSend />
       <CarouselPro
-        anim={props.anim}
-        product={props.product}
-        addArr={addArr}
+        addElementToData={addElementToData}
         title={"Добавить к заказу?"}
-        filteName={props.nameC}
+        filteName={nameCategory}
         bool={false}
       />
       <CarouselPro
-        anim={props.anim}
-        product={props.product}
-        addArr={addArr}
-        filteName={props.nameC}
-        title={props.nameC}
+        addElementToData={addElementToData}
+        filteName={nameCategory}
+        title={nameCategory}
         bool={true}
       />
 
@@ -351,9 +346,9 @@ const HomeCart = (props) => {
       </div>
       <div className="row">
         <div className="col-12">
-          <div class="form-group">
+          <div className="form-group">
             <textarea
-              class="form-control"
+              className="form-control"
               id="exampleFormControlTextarea1"
               rows="10"
               placeholder="Есть уточнения?"

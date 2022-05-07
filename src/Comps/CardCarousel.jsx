@@ -1,7 +1,6 @@
-import React from 'react';
 
-
-const CardCarousel = (props) => {
+const CardCarousel = props => {
+  const {img,title,text,display,status,id,price,addElementToData} = props;
     return (
         <>
            <div className='col-11'>
@@ -9,38 +8,39 @@ const CardCarousel = (props) => {
           <div
             className="stat"
             id="pp"
-            style={{ display: props.display || "none" }}
+            style={{ display: display || "none" }}
           >
-            <p>{props.status}</p>
+            <p>{status}</p>
           </div>
-          <img className="card-img-top" src={props.img} />
+          <img className="card-img-top" src={img} />
           <div className="card-body d-flex justify-content-between flex-column">
-            <h5 className="card-title">{props.title}</h5>
-            <p className="card-text">{props.text}</p>
+            <h5 className="card-title">{title}</h5>
+            <p className="card-text">{text}</p>
             <div className="d-flex justify-content-between align-items-center mt-3">
               <button
                 href="#"
                 className="btn btn2 btn-primary w-100"
-                id={props.id}
+                id={id}
                 onClick={() => {
-                  props.addArr(
+                  addElementToData(
                     {
-                    title: props.title,
-                    price: props.price,
-                    text: props.text,
-                    img: props.img,
+                    title: title,
+                    price: price,
+                    text: text,
+                    img: img,
                     quality: 1,
-                    id: props.id,
+                    id: id,
                   }
                   );
                 }}
               >
-                {props.price}
+                {price}
               </button>
               
             </div>
           </div>
-        </div> </div>
+        </div> 
+        </div>
         </> 
     );
 };

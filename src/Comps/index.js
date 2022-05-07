@@ -8,4 +8,6 @@ export { default as Adress } from './Adress';
 export { default as Catigory } from './Catigory';
 export { default as Dostavka } from './Dostavka';
 export { default as FormInput } from './FormInput';
+export { default as Cardbox } from './Cardbox';
+export { default as ChangeMediaCard } from './ChangeMediaCard';
 

@@ -1,47 +1,49 @@
 import React from "react";
-import Cardbox from "./Cardbox";
-import ChangeMediaCard from "./ChangeMediaCard";
 import { catigorys } from "../data/Products";
+import { useSelector } from "react-redux";
+import Cardbox from "./Cardbox";
 import Cards from "./Cards";
-import { useSelector } from 'react-redux';
-import dataSlice from '../redux/dataSlice';
+import { ChangeMediaCard } from ".";
 
-const Catigory = (props) => {
-  const store = useSelector(state => state.dataSlice)
-  console.log(store);
+const Catigory = () => {
+  const store = useSelector((state) => state.dataSlice);
   return (
     <>
-      <div className="d-none d-lg-block">
-        {catigorys.map((item) => (
-          <Cardbox
-            filterTitle={props.filterTitle}
-            color={props.color}
-            name={item.name}
-            cardd={store.data
-              .filter((items) => items.category == item.name)
-              .map((item) => (
-                <Cards anim={props.anim} {...item} />
-              ))}
-          />
-        ))}
-      </div>
-      <div className=" d-lg-none">
-        {catigorys.map((item) => (
-          <Cardbox
-            filterCartigoriy={props.filterCartigoriy}
-            filterTitle={props.filterTitle}
-            color={props.color}
-            name={item.name}
-            cardd={store.data
-              .filter((items) => items.category == item.name)
-              .map((item) => (
-                <ChangeMediaCard anim={props.anim} {...item} />
-              ))}
-          />
-        ))}
-      </div>
+      <XLCardsDraw store={store}/>
+      <SXCardsDraw store={store}/>
     </>
   );
 };
 
+const XLCardsDraw = ({ store }) => {
+  return (
+    <div className="d-none d-lg-block">
+      {catigorys.map((item) => (
+        <Cardbox
+          name={item.name}
+          cards={store.data
+            .filter((items) => items.category == item.name)
+            .map((item) => (
+              <Cards {...item} />
+            ))}
+        />
+      ))}
+    </div>
+  );
+};
+
+const SXCardsDraw = ({ store }) => {
+  return <div className=" d-lg-none">
+    {catigorys.map((item) => (
+      <Cardbox
+        name={item.name}
+        cards={store.data
+          .filter((items) => items.category == item.name)
+          .map((item) => (
+            <ChangeMediaCard {...item} />
+          ))}
+      />
+    ))}
+  </div>;
+};
 export default Catigory;
