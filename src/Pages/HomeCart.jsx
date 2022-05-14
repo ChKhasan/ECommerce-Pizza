@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -10,9 +10,9 @@ import { CarouselPro, FormInput, PromocodeSend, RegistrationCart } from "../Comp
 
 const HomeCart = (props) => {
   const { nameCategory } = props;
-  const [selectedValue, setSelectedValue] = React.useState("a");
-  const [selectedValue1, setSelectedValue1] = React.useState("b");
-  const [selectedValue2, setSelectedValue2] = React.useState("c");
+  const [selectedValue, setSelectedValue] = useState("a");
+  const [selectedValue1, setSelectedValue1] = useState("b");
+  const [selectedValue2, setSelectedValue2] = useState("c");
 
   const handleChange = (event) => {
     setSelectedValue(event.target.value);
@@ -45,10 +45,10 @@ const HomeCart = (props) => {
     inputProps: { "aria-label": item },
   });
   const dispatch = useDispatch();
-  const addElementToData = (itemm) => {
-    document.getElementById(itemm.id).disabled = "true";
-    document.getElementById("dis").disabled = false;
-    dispatch(dataBase(itemm));
+  const addElementToData = (item) => {
+    document.getElementById(item.id).disabled = "true";
+    dispatch(dataBase(item));
+    console.log(item);
   };
   const selected = useSelector((state) => state.dataSlice.selected);
   return (
@@ -117,6 +117,7 @@ const HomeCart = (props) => {
             type={"email"}
           />
         </div>
+        
       </div>
       <hr />
       <div className="row">
@@ -381,7 +382,7 @@ const HomeCart = (props) => {
             className="btn btn2 btn-primary"
             onClick={() => props.propro(selected)}
           >
-            <Link to="/homecart">Оформить заказ</Link>
+            <Link to="/orderisaccepted">Оформить заказ</Link>
           </button>
         </div>
       </div>

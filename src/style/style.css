@@ -156,12 +156,24 @@ p {
   width: 150px;
 }
 .cashin-box {
-  width: 300px !important;
+  width: 250px !important;
   margin-right: 18px !important;
+}
+
+@media  (min-width: 1300px){
+  .cashin-box {
+    width: 280px !important
+  }
+}
+@media  (min-width: 1400px){
+  .cashin-box {
+    width: 300px !important
+  }
 }
 .cashbek {
   cursor: pointer;
   transition: 0.2s;
+  width: 100%;
 }
 .cashbek:hover {
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
@@ -670,3 +682,154 @@ input[type="checkbox"]::before {
 .ant-layout-header {
   z-index: 1 !important;
 }
+.open_profile {
+  font-family: sans-serif !important;
+font-size: 14px !important;
+font-weight: 400 !important;
+line-height: 18px !important;
+letter-spacing: 0px !important;
+text-align: left !important;
+color: #000 !important;
+text-transform: lowercase !important;
+
+}
+.hundred_bonuses_link {
+  font-weight: 600 !important;
+  color:  #ff7010 !important;
+}
+.button_group_profile a{
+font-size: 14px !important;
+font-weight: 400 !important;
+line-height: 20px !important;
+letter-spacing: 0px !important;
+text-align: center !important;
+color: #000 ;
+display: flex;
+justify-content: center;
+align-items: center;
+width: 178px !important;
+height: 100%;
+border-radius: 6px;
+/* padding-top: 15px;
+padding-bottom: 15px; */
+
+}
+.button_group_profile a:hover {
+  color: grey !important;
+}
+
+.button_group_profile {
+  background: #fff !important;
+  height: 48px;
+  display: flex;
+  border-radius: 6px;
+  box-shadow: 0 9px 25px 0 rgb(132 128 177 / 28%);
+}
+.button_group_profile_active {
+font-size: 14px !important;
+text-transform: lowercase !important;
+  background: #ff7010 !important;
+  color: #fff !important;
+  
+}
+.divider {
+  height: 44px;
+width: 4px;
+position: absolute;
+background: red;
+border-radius: 24px !important;
+left: 0;
+}
+.css-1elwnq4-MuiPaper-root-MuiAccordion-root:last-of-type {
+  border-radius: 12px !important;
+}
+.accordion_icon {
+  position: absolute !important;
+  top: 0px;
+  right: 10px;
+}
+.accordion_img {
+  width: 40px;
+  height: 40px;
+}
+.product_amount {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #FFEEE2;
+  color: #FF7010;
+  font-size: 16px;
+  border-radius: 6px;
+
+}
+.profile_card {
+padding: 24px 32px;
+height: inherit !important;
+border-radius: 12px !important;
+text-align: left !important;
+line-height: normal !important;
+}
+.profile_card h6 {
+  font-family: 'Inter';
+font-size: 24px;
+font-weight: 600;
+line-height: 32px;
+letter-spacing: 0px;
+text-align: left;
+}
+.profile_card_footer p {
+font-family: "Inter" !important;
+font-size: 14px !important;
+font-weight: 400 !important;
+line-height: 18px !important;
+letter-spacing: 0px;
+text-align: left !important;
+color: #A5A5A5 !important;
+
+}
+.profile_card span {
+  font-family: "Inter";
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 22px !important;
+  letter-spacing: 0px;
+  text-align: left !important;
+  color: #191919 !important;
+
+  
+  }
+  .edit_btn {
+    color: #FF7010 !important;
+    cursor: pointer ;
+  }
+  .order_accepted h3{
+
+    font-family: "Inter";
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 32px;
+    letter-spacing: 0px;
+    text-align: center;
+  margin-top: 50px;
+    
+  }
+  .order_accepted img {
+    width: 280px;
+  }
+  .order_accepted   p {
+font-family: "SF Pro Text";
+font-size: 16px;
+font-weight: 400;
+line-height: 22px;
+letter-spacing: 0px;
+text-align: center;
+
+  }
+  .order_accepted a {
+  margin-top: 24px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 32px;
+    padding-right: 32px;
+  }

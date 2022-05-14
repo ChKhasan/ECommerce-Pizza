@@ -11,6 +11,10 @@ import APanelLayout from "../APanel/APanelLayout";
 import ProtectedRoutes from "../APanel/ProtectedRoutes";
 import AProtected from "../APanel/AProtected";
 import Layout from "../Layout/Layout";
+import ClientProfilePage from "./ClientProfilePage";
+import OrderHistory from "../profilePages/OrderHistory";
+import PersonalSettings from "../profilePages/PersonalSettings";
+import OrderIsAccepted from "./OrderIsAccepted";
 
 const PageBox = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -56,7 +60,15 @@ const PageBox = () => {
             path="homecart"
             element={<HomeCart product={product} nameCategory={nameCategory} />}
           />
+            <Route path="orderisaccepted" element={<OrderIsAccepted/>} />
+
+        <Route path="clientprofile" element={<ClientProfilePage ><Outlet /></ClientProfilePage>} >
+            <Route path="/clientprofile" element={<Navigate replace to="orferhistory" />} />
+            <Route path="orferhistory" element={<OrderHistory/>} />
+            <Route path="personalsettings" element={<PersonalSettings/>} />
         </Route>
+        </Route>
+
 
         <Route path="/" element={<ProtectedRoutes />}>
           <Route path="/">
@@ -92,4 +104,5 @@ const PageBox = () => {
   );
 };
 
+// export default React.memo(PageBox);
 export default PageBox;

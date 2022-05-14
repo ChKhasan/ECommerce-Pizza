@@ -1,6 +1,7 @@
 import React from "react";
 import { Form, Input, Button } from "antd";
 import { TOKEN } from "../const/Token";
+import { useNavigate } from "react-router-dom";
 const layout = {
   labelCol: {
     span: 8,
@@ -21,8 +22,10 @@ const validateMessages = {
   },
 };
 const Registration = () => {
+  const navigate = useNavigate()
   const onFinish = (values) => {
   localStorage.setItem(TOKEN,JSON.stringify(values))
+  navigate("/homepage")
   };
   return (
     <div className="container-xxl ">
@@ -40,7 +43,8 @@ const Registration = () => {
             validateMessages={validateMessages}
           >
             <Form.Item
-              name={["user", "name"]}
+            className="form-group labelInput"
+              name={"name"}
               label="Name"
               rules={[
                 {
@@ -48,10 +52,10 @@ const Registration = () => {
                 },
               ]}
             >
-              <Input />
+              <Input className="form-group labelInput"/>
             </Form.Item>
             <Form.Item
-              name={["user", "email"]}
+              name={"email"}
               label="Email"
               rules={[
                 {
@@ -61,7 +65,7 @@ const Registration = () => {
             >
               <Input />
             </Form.Item>
-            <Form.Item name={["user", "website"]} label="Number Phone">
+            <Form.Item name={"phone"} label="Number Phone">
               <Input />
             </Form.Item>
 

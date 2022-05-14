@@ -14,6 +14,7 @@ const FormRadioCheck = ({group,toLabel,title}) => {
     name: "color-radio-button-demo",
     inputProps: { "aria-label": item },
   });
+  
   return (
     <>
       <div className="form-check mt-3">

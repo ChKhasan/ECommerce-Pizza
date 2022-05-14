@@ -66,6 +66,7 @@ const Carousel = (props) => {
   );
 };
 
+
 const XLCarouselSlider = (props) => {
   const { title, addElementToData, bool, product, settings } = props;
   return (
@@ -85,6 +86,7 @@ const XLCarouselSlider = (props) => {
     </div>
   );
 };
+
 
 const SXCarouselSlider = (props) => {
   const { title, bool, product, settings } = props;

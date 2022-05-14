@@ -4,7 +4,7 @@ import useAuth from '../hooks/useAuth';
 
 const AProtected = () => {
     const auth = useAuth()
-  return auth ? <Navigate to="/admin" />:<Outlet />
+  return auth ? <Navigate to="/clientprofile" />:<Outlet />
 }
 
 export default AProtected

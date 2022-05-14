@@ -1,16 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Form, Input, Button, Checkbox } from "antd";
 import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
-import { TOKEN } from "../const/Token";
+import { ADMIN } from "../const/Token";
 
 const Login = () => {
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
+  const [loginAuth, setLogiAuth] = useState({
+    username: true,
+    password: true,
+  });
   const onFinish = (values) => {
-    localStorage.setItem(TOKEN,JSON.stringify(values))
-    navigate("/admin/pizza")
+    localStorage.setItem(ADMIN, JSON.stringify(values));
+
+    navigate("/admin/pizza");
   };
+  console.log(loginAuth);
   return (
     <div className="container-xxl ">
       <div
@@ -30,7 +35,7 @@ const Login = () => {
               name="username"
               rules={[
                 {
-                  required: true,
+                  required: false,
                   message: "Please input your Username!",
                 },
               ]}
@@ -44,7 +49,7 @@ const Login = () => {
               name="password"
               rules={[
                 {
-                  required: true,
+                  required: loginAuth.password,
                   message: "Please input your Password!",
                 },
               ]}
@@ -66,7 +71,7 @@ const Login = () => {
             </Form.Item>
 
             <Form.Item>
-            <Link className="d-inline" to="/homepage">
+              <Link className="d-inline" to="/homepage">
                 back
               </Link>
               <Button
@@ -89,4 +94,3 @@ const Login = () => {
 };
 
 export default Login;
-

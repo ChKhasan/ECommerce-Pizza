@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { TOKEN } from "../const/Token";
 import { product } from "../data/Products";
 
 const dataSlice = createSlice({
@@ -7,7 +8,8 @@ const dataSlice = createSlice({
     data: [...product],
     selected: [],
     countSum: 0,
-    isContainerActive: false
+    isContainerActive: false,
+    clientAccount: JSON.parse(localStorage.getItem(TOKEN))
   },
   reducers: {
     dataBase: (state, action) => {
@@ -18,17 +20,17 @@ const dataSlice = createSlice({
     },
     addProduct: (state, action) => {
       state.selected[
-        state.selected.findIndex((item) => item.id == action.payload)
+        state.selected.findIndex((item) => item.id === action.payload)
       ].quality += 1;
     },
     unAddProduct: (state, action) => {
       if (
         state.selected[
-          state.selected.findIndex((item) => item.id == action.payload)
+          state.selected.findIndex((item) => item.id === action.payload)
         ].quality > 1
       ) {
         state.selected[
-          state.selected.findIndex((item) => item.id == action.payload)
+          state.selected.findIndex((item) => item.id === action.payload)
         ].quality -= 1;
       }
     },
@@ -56,10 +58,13 @@ const dataSlice = createSlice({
    action.payload.forEach(element => {
     state.data = state.data.filter(item => item.id !== element.id)
     })
+    },
+    takeDataClient: (state,action) => {
+      state.clientAccount = JSON.parse(localStorage.getItem(TOKEN))
     }
   },
 });
 
 
 export default dataSlice.reducer;
-export const { dataBase, addProduct,animate,unAddProduct,createData,deleteData } = dataSlice.actions;
+export const { dataBase, addProduct,animate,unAddProduct,createData,deleteData ,takeDataClient} = dataSlice.actions;

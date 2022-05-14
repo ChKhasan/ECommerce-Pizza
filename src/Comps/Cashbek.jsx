@@ -25,13 +25,15 @@ const Cashbek = () => {
       <div className="container-fluid c-color  pb-30">
         <div className="container-xxl ptt">
           <div className="row">
-            <div className="col-12  d-flex justify-content-between flex-wrap">
+            <div className="col-12  d-flex justify-content-between  flex-wrap">
               <ScrollContainer className="scroll-container w-100 d-flex justify-content-between">
                 {cash.map((item, index) => (
                   <Cashin key={index} name={item.name} price={item.price} />
                 ))}
               </ScrollContainer>
             </div>
+
+           
           </div>
         </div>
       </div>
