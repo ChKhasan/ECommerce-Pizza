@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Button, Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import ModeEditOutlineOutlinedIcon from "@mui/icons-material/ModeEditOutlineOutlined";
-
 import { FormInput } from "../Comps";
 import { TOKEN } from "../const/Token";
 import { Form, Input } from "antd";
@@ -20,12 +19,11 @@ const PersonalSettings = () => {
   const [form] = Form.useForm();
   const [personalHSH, setPersonalHSH] = useState(false);
   const [passwordHSH, setPasswordHSH] = useState(false);
-
   const dispatch = useDispatch();
+
   const store = useSelector((state) => state.dataSlice.clientAccount);
 
   const getValue = () => {
-    console.log(store);
     setPersonalHSH(true);
     form.setFieldsValue(store);
   };

@@ -16,7 +16,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { createData, deleteData } from "../redux/dataSlice";
 import { FiEdit } from "react-icons/fi";
 
-const { Option } = Select;
 
 const layout = {
   labelCol: { span: 4 },
@@ -107,8 +106,6 @@ const APizza = ({ category }) => {
     setIsModalVisible(true);
   };
 
-
-
   const handleCancel = () => {
     setIsModalVisible(false);
   };
@@ -116,9 +113,8 @@ const APizza = ({ category }) => {
   const [form] = Form.useForm();
 
   const onFinish = (values) => {
-    console.log(values);
-    let urr = fileList[0].thumbUrl;
-    dispatch(createData({ values, category, urr, editButton }));
+    let urlImg = fileList[0].thumbUrl;
+    dispatch(createData({ values, category, urlImg, editButton }));
     setIsModalVisible(false);
     form.resetFields();
   };
@@ -128,18 +124,19 @@ const APizza = ({ category }) => {
   };
   const deleteDatas = () => {
     dispatch(deleteData(selected));
-    console.log(store, selected);
   };
   const editDatas = (e) => {
     setIsModalVisible(true);
     setEditButton(e);
     form.setFieldsValue(e);
-    setFileList([{
-      uid: '-1',
-      name: 'image.png',
-      status: 'done',
-      url: `../${e.img}`,
-    },])
+    setFileList([
+      {
+        uid: "-1",
+        name: "image.png",
+        status: "done",
+        url: `../${e.img}`,
+      },
+    ]);
     console.log(e.img);
   };
   return (
@@ -183,7 +180,7 @@ const APizza = ({ category }) => {
           <Form.Item {...tailLayout}>
             <div className="row">
               <div className="col-12 d-flex justify-content-end">
-              <Button onClick={handleCancel}>Cancel</Button>
+                <Button onClick={handleCancel}>Cancel</Button>
 
                 <Button htmlType="button" className="mx-4" onClick={onReset}>
                   Reset

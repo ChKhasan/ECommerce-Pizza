@@ -1,8 +1,6 @@
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
-
 import { useSelector } from "react-redux";
-
 import Header from "../Comps/Header";
 import Footer from "../Comps/Footer";
 

@@ -18,6 +18,7 @@ import OrderIsAccepted from "./OrderIsAccepted";
 
 const PageBox = () => {
   const [isVisible, setIsVisible] = useState(true);
+  const [nameCategory, setNameCategory] = useState(0);
 
   useEffect(() => {
     window.addEventListener("scroll", listenToScroll);
@@ -38,7 +39,6 @@ const PageBox = () => {
     }
   };
 
-  const [nameCategory, setNameCategory] = useState(0);
   const takeName = (name) => {
     setNameCategory(name);
   };

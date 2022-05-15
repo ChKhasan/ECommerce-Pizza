@@ -45,10 +45,10 @@ const HomeCart = (props) => {
     inputProps: { "aria-label": item },
   });
   const dispatch = useDispatch();
+
   const addElementToData = (item) => {
     document.getElementById(item.id).disabled = "true";
     dispatch(dataBase(item));
-    console.log(item);
   };
   const selected = useSelector((state) => state.dataSlice.selected);
   return (

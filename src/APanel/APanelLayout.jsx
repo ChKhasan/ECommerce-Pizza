@@ -8,13 +8,14 @@ import {
 } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 import { TOKEN } from "../const/Token";
+
+
 const { Header, Sider, Content } = Layout;
 const APanelLayout = ({ children }) => {
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
   const toggle = () => {
     setCollapsed(!collapsed);
-    console.log("ll");
   };
   const logOut = () => {
     localStorage.removeItem(TOKEN);
@@ -96,9 +97,7 @@ const APanelLayout = ({ children }) => {
             <Menu.Item key="7" icon={<UserOutlined />}>
               <Link to="/admin/sauces">Sauces</Link>
             </Menu.Item>
-            <Menu.Item key="8" icon={<UserOutlined />}>
-              <Button onClick={logOut}>Log out</Button>
-            </Menu.Item>
+           
           </Menu>
         </Sider>
         <Layout
