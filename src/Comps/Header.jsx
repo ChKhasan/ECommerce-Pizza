@@ -180,7 +180,7 @@ const Header = ({ id, takename }) => {
                           id="disabled"
                           className="btn  btn2 btn-primary text-reset"
                         >
-                          <Link to="/homecart">Оформить заказ</Link>
+                          <Link to="/homecart#">Оформить заказ</Link>
                         </button>
                       </div>
                     </div>
