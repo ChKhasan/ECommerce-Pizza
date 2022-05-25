@@ -26,6 +26,7 @@ const Registration = () => {
   const onFinish = (values) => {
   localStorage.setItem(TOKEN,JSON.stringify(values))
   navigate("/homepage")
+  
   };
   return (
     <div className="container-xxl ">

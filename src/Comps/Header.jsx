@@ -208,6 +208,7 @@ const Header = ({ id, takename }) => {
       </div>
     </div>
   );
+  
 };
 
 const ScrollToTopButton = () => {
