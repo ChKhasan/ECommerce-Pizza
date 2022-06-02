@@ -117,6 +117,7 @@ const APizza = ({ category }) => {
     dispatch(createData({ values, category, urlImg, editButton }));
     setIsModalVisible(false);
     form.resetFields();
+    console.log(urlImg);
   };
 
   const onReset = () => {
