@@ -2,6 +2,8 @@ import React from "react";
 import { Form, Input, Button } from "antd";
 import { TOKEN } from "../const/Token";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { takeDataClient } from "../redux/dataSlice";
 const layout = {
   labelCol: {
     span: 8,
@@ -22,9 +24,12 @@ const validateMessages = {
   },
 };
 const Registration = () => {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const onFinish = (values) => {
   localStorage.setItem(TOKEN,JSON.stringify(values))
+  dispatch(takeDataClient())
+
   navigate("/homepage")
   
   };

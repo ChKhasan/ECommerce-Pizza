@@ -8,24 +8,21 @@ import Divider from "@mui/material/Divider";
 import ListItem from "@mui/material/ListItem";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import useDrawer from "../hooks/useDrawer";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { nameCatigory } from "../data/Products";
 import ScrollToTop from "react-scroll-to-top";
 import { TOKEN } from "../const/Token";
 import { Menu, Dropdown } from "antd";
 import useAuth from '../hooks/useAuth';
+import { deleteDataClient } from "../redux/dataSlice";
 
 
 const Header = ({ id, takename }) => {
   const auth = useAuth()
   const navigate = useNavigate()
-  const [toggleDrawer, list, state] = useDrawer(<NavbarDrawer />, 250);
-
-  const [loginToken, setLoginToken] = useState(
-    JSON.parse(localStorage.getItem(TOKEN))
-  );
   const logOut = () => {
     localStorage.removeItem(TOKEN);
+    dispatch(deleteDataClient())
     navigate("/homepage");
   };
   const menu = (
@@ -57,9 +54,15 @@ const Header = ({ id, takename }) => {
       ]}
       />
       );
+  const [toggleDrawer, list, state] = useDrawer(<NavbarDrawer menu={menu}/>, 250);
+
+ const dispatch = useDispatch()
+
+
 
 
   const dataSlice = useSelector((state) => state.dataSlice);
+  console.log(dataSlice);
 
   return (
     <div className="p-fixed container-fluid">
@@ -227,6 +230,46 @@ const ScrollToTopButton = () => {
   );
 };
 const NavbarDrawer = () => {
+  const auth = useAuth()
+  const navigate = useNavigate()
+
+ const dispatch = useDispatch()
+  const dataSlice = useSelector((state) => state.dataSlice);
+  const logOut = () => {
+    localStorage.removeItem(TOKEN);
+    dispatch(deleteDataClient())
+    navigate("/homepage");
+  };
+
+  const menu = (
+    <Menu
+      items={[
+        {
+          label: (
+            <>
+              <Link
+              to="/clientprofile"
+                className="hundred_bonuses_link"
+              >
+                100 бонусов
+              </Link>
+              <Divider />
+            </>
+          ),
+        },
+        {
+          label: auth ? <Link to="/clientprofile">История заказов</Link>:"",
+        },
+        {
+          label: auth ? <Link to="/clientprofile/personalsettings">Настройки</Link>:"",
+        },
+  
+        {
+          label: auth ? <Button className="open_profile" onClick={logOut}>Войти в аккаунт</Button>:<Link to="/login">Войти в аккаунт</Link>
+        },
+      ]}
+      />
+      );
   return (
     <div>
       <List>
@@ -237,9 +280,11 @@ const NavbarDrawer = () => {
             </div>
           </ListItemIcon>
           <div className="col-12 d-flex justify-content-start navbar-top2">
-            <a href="#" style={{ color: "black" }}>
-              Войти в аккаунт
-            </a>
+          <Dropdown overlay={menu} placement="bottom" arrow>
+               {auth ? <Link to="/clientprofile/personalsettings">{dataSlice.clientAccount.name}</Link>
+               :
+               <Link to="/login">Войти в аккаунт</Link>}
+              </Dropdown>
           </div>
         </ListItem>
       </List>
@@ -301,6 +346,11 @@ const NavbarDrawer = () => {
             </a>
           </ListItemIcon>
         </ListItem>
+        {auth && <ListItem button key={"text"}>
+          <ListItemIcon>
+          <a className="dropdown-item a_menu" href="#" onClick={logOut}>Войти в аккаунт</a>
+          </ListItemIcon>
+        </ListItem> }
       </List>
     </div>
   );

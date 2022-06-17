@@ -57,7 +57,7 @@ const PageBox = () => {
           <Route path="/" element={<Navigate to="homepage" />} />
           <Route path="homepage" element={<Homepage product={product} />} />
           <Route
-            path="homecart#"
+            path="homecart"
             element={<HomeCart product={product} nameCategory={nameCategory} />}
           />
             <Route path="orderisaccepted" element={<OrderIsAccepted/>} />

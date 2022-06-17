@@ -66,6 +66,9 @@ const dataSlice = createSlice({
     takeDataClient: (state) => {
       state.clientAccount = JSON.parse(localStorage.getItem(TOKEN));
     },
+    deleteDataClient: (state) => {
+      state.clientAccount = [];
+    },
   },
 });
 
@@ -78,4 +81,5 @@ export const {
   createData,
   deleteData,
   takeDataClient,
+  deleteDataClient
 } = dataSlice.actions;
